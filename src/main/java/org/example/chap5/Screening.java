@@ -15,6 +15,6 @@ public class Screening {
     }
 
     private Money calculateFee(int audienceCount) {
-        return movie.calculateMoneyFee(this).times(audienceCount);
+        return movie.calculateMovieFee(this).times(audienceCount);
     }
 }
