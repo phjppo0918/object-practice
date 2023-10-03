@@ -8,12 +8,14 @@ import java.util.List;
 
 public class NightlyDiscountPhone {
     private static final int LATE_NIGHT_HOUR = 22;
+    private double taxRate;
     private Money nightlyAmount;
     private Money regularAmount;
     private Duration seconds;
     private List<Call> calls = new ArrayList<>();
 
-    public NightlyDiscountPhone(final Money nightlyAmount, final Money regularAmount, final Duration seconds) {
+    public NightlyDiscountPhone(final double taxRate, final Money nightlyAmount, final Money regularAmount, final Duration seconds) {
+        this.taxRate = taxRate;
         this.nightlyAmount = nightlyAmount;
         this.regularAmount = regularAmount;
         this.seconds = seconds;
@@ -42,6 +44,6 @@ public class NightlyDiscountPhone {
             }
         }
 
-        return result;
+        return result.minus(result.times(taxRate));
     }
 }

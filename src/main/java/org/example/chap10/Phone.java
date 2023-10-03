@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Phone {
+
+    private double taxRate;
     private Money amount;
     private Duration seconds;
     private List<Call> calls = new ArrayList<>();
 
-    public Phone(final Money amount, final Duration seconds) {
+    public Phone(final double taxRate, final Money amount, final Duration seconds) {
+        this.taxRate = taxRate;
         this.amount = amount;
         this.seconds = seconds;
     }
@@ -39,6 +42,6 @@ public class Phone {
             result = result.plus(amount.times(call.getDuration().getSeconds()/ seconds.getSeconds()));
         }
 
-        return result;
+        return result.plus(result.times(taxRate));
     }
 }
